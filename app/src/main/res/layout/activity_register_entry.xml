@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registro de Entrada"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:padding="8dp" />
+
+    <!-- Mapa para mostrar la ubicación -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <!-- Hora de Entrada -->
+    <TextView
+        android:id="@+id/entryTimeTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hora: "
+        android:paddingTop="8dp"/>
+
+    <!-- Fecha de Entrada -->
+    <TextView
+        android:id="@+id/entryDateTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha: "
+        android:paddingTop="8dp"/>
+
+    <!-- Ubicación -->
+    <TextView
+        android:id="@+id/entryLocationTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ubicación: "
+        android:paddingTop="8dp"/>
+
+    <!-- Observación de minutos de retraso -->
+    <TextView
+        android:id="@+id/delayObservationTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Minutos de Retraso: "
+        android:paddingTop="8dp"/>
+
+    <!-- Botones para aceptar y salir -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/confirmEntryButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Confirmar Entrada" />
+
+        <Button
+            android:id="@+id/exitButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Salir" />
+    </LinearLayout>
+
+</LinearLayout>

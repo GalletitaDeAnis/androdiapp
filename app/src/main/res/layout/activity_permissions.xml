@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Solicitar Permiso o Comisión"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:padding="8dp" />
+
+    <Spinner
+        android:id="@+id/permissionCategorySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/seleccionar_categoria" />
+
+    <EditText
+        android:id="@+id/permissionAuthorityEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Autoridad"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/permissionNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del Solicitante"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/permissionDateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Fecha del Permiso"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/permissionReasonEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Motivo del Permiso"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/requestPermissionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Solicitar Permiso"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center" />
+
+</LinearLayout>

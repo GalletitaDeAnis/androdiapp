@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MovilWebExamen</string>
+    <string name="seleccionar_categoria">Seleccionar categoría</string>
+    <string name="autoridad">Autoridad</string>
+    <string name="nombre">Nombre</string>
+    <string name="fecha_del_permiso">Fecha del permiso</string>
+    <string name="motivo">Motivo</string>
+    <string name="solicitar_permiso">Solicitar permiso</string>
+    <!-- Añade más cadenas según sea necesario -->
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_greeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buenos días, nombre del usuario" />
+
+    <Button
+        android:id="@+id/btn_register_entry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrar entrada" />
+
+    <Button
+        android:id="@+id/btn_register_exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrar salida" />
+
+    <Button
+        android:id="@+id/btn_retreats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Retrasos y Faltas" />
+
+    <Button
+        android:id="@+id/btn_permissions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Permisos y Comisiones" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Salir" />
+</LinearLayout>
