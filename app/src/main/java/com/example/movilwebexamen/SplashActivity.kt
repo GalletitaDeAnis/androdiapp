@@ -12,9 +12,9 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // Redirigir a MainActivity después de un retraso
+        // Redirigir a LoginActivity después de un retraso
         Handler().postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish() // Cierra SplashActivity
         }, 2000) // 2000 milisegundos = 2 segundos
     }
