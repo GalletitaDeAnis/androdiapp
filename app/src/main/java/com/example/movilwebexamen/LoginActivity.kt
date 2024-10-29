@@ -99,11 +99,13 @@ class LoginActivity : AppCompatActivity() {
 
                     if (status == "success") {
                         val userId = jsonResponse.getInt("user_id") // Obtener el ID de usuario
+                        val userName = jsonResponse.getString("user_name") // Obtener el nombre de usuario
 
-                        // Guardar el ID de usuario en SharedPreferences
+                        // Guardar el ID y el nombre de usuario en SharedPreferences
                         val sharedPreferences = getSharedPreferences("MiPreferencia", Context.MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
                         editor.putInt("user_id", userId) // Almacenar el ID
+                        editor.putString("user_name", userName) // Almacenar el nombre del usuario
                         editor.apply()
 
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)

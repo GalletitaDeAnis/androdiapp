@@ -27,13 +27,13 @@
         android:id="@+id/btn_retreats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Retrasos y Faltas" />
+        android:text="Ver Retrasos y Faltas" />
 
     <Button
         android:id="@+id/btn_permissions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Permisos y Comisiones" />
+        android:text="Solicitar Permiso" />
 
     <Button
         android:id="@+id/btn_logout"

@@ -22,13 +22,25 @@ import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 import android.util.Log
+import android.Manifest
+import android.content.pm.PackageManager
+import android.location.Location
+import androidx.core.app.ActivityCompat
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+
 class RegisterEntryActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var googleMap: GoogleMap
-
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var currentLatitude: Double = 0.0
+    private var currentLongitude: Double = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_entry)
+
+        // Inicializar FusedLocationProviderClient
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         // Inicializar el mapa
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -69,7 +81,6 @@ class RegisterEntryActivity : AppCompatActivity(), OnMapReadyCallback {
         } else {
             // El ID de usuario no está disponible
             Log.d("TAG", "No se encontró el ID de usuario.")
-            // Aquí puedes manejar la situación en la que no se encuentra el ID, por ejemplo, mostrando un mensaje y cerrando la actividad
             Toast.makeText(this, "No se encontró el ID de usuario.", Toast.LENGTH_SHORT).show()
             finish() // Cerrar la actividad si el ID no está disponible
             return
@@ -78,8 +89,8 @@ class RegisterEntryActivity : AppCompatActivity(), OnMapReadyCallback {
         // Botón para confirmar entrada
         findViewById<Button>(R.id.confirmEntryButton).setOnClickListener {
             // Obtener la ubicación actual (simulada en este ejemplo)
-            val latitud = -16.500000 // Ejemplo de latitud
-            val longitud = -68.150000 // Ejemplo de longitud
+            val latitud = currentLatitude // Ejemplo de latitud
+            val longitud = currentLongitude // Ejemplo de longitud
 
             // Obtener la fecha y hora actuales en el formato correcto
             val fecha = dateFormat.format(currentTime)
@@ -97,9 +108,9 @@ class RegisterEntryActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
-
+        obtenerUbicacionActual()
         // Obtener la ubicación actual (puedes usar fused location provider para obtener la ubicación real)
-        val currentLocation = LatLng(-16.500000, -68.150000) // Ejemplo: Ubicación en La Paz, Bolivia
+        val currentLocation = LatLng(currentLatitude , currentLongitude) // Latitud y longitud
         googleMap.addMarker(MarkerOptions().position(currentLocation).title("Ubicación Actual"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
 
@@ -107,12 +118,46 @@ class RegisterEntryActivity : AppCompatActivity(), OnMapReadyCallback {
         findViewById<TextView>(R.id.entryLocationTextView).text = "Ubicación: ${currentLocation.latitude}, ${currentLocation.longitude}"
     }
 
+    private fun obtenerUbicacionActual() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // Solicitar permisos si no están concedidos
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
+            return
+        }
+
+        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+            location?.let {
+                currentLatitude = it.latitude
+                currentLongitude = it.longitude
+                val currentLocation = LatLng(currentLatitude, currentLongitude)
+
+                googleMap.addMarker(MarkerOptions().position(currentLocation).title("Ubicación Actual"))
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
+
+                // Mostrar la ubicación en el TextView
+                findViewById<TextView>(R.id.entryLocationTextView).text = "Ubicación: ${currentLatitude}, ${currentLongitude}"
+            } ?: run {
+                Toast.makeText(this, "No se pudo obtener la ubicación", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1 && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            obtenerUbicacionActual()
+        } else {
+            Toast.makeText(this, "Permiso de ubicación denegado", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
     // Esta función está fuera de onCreate para mejorar la estructura del código
     private fun enviarRegistroEntrada(userId: String, fecha: String, hora: String, latitud: String, longitud: String) {
         val url = URL("http://192.168.100.102:9191/movilconexion/register_entry.php")
         val postData = "user_id=$userId&fecha=$fecha&hora=$hora&latitud=$latitud&longitud=$longitud"
 
-        // Usamos coroutines en lugar de AsyncTask
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val conn = url.openConnection() as HttpURLConnection
@@ -120,7 +165,6 @@ class RegisterEntryActivity : AppCompatActivity(), OnMapReadyCallback {
                 conn.doOutput = true
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
 
-                // Enviar los datos
                 conn.outputStream.use { outputStream ->
                     outputStream.write(postData.toByteArray())
                 }

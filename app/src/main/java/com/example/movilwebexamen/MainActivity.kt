@@ -14,12 +14,23 @@ import com.example.movilwebexamen.ui.theme.MovilWebExamenTheme
 import android.content.Intent
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Obtener el nombre del usuario desde SharedPreferences
+        val sharedPreferences = getSharedPreferences("MiPreferencia", Context.MODE_PRIVATE)
+        val userName = sharedPreferences.getString("user_name", "Usuario Desconocido") // Valor por defecto
+
+        // Configurar el saludo
+        val tvGreeting: TextView = findViewById(R.id.tv_greeting)
+        tvGreeting.text = "Buenos días, $userName"
+
 
         val btnRegisterEntry: Button = findViewById(R.id.btn_register_entry)
         val btnRegisterExit: Button = findViewById(R.id.btn_register_exit)
