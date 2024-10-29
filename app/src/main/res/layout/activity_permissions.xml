@@ -13,40 +13,24 @@
         android:gravity="center"
         android:padding="8dp" />
 
+    <!-- Spinner para seleccionar tipo de permiso -->
     <Spinner
-        android:id="@+id/permissionCategorySpinner"
+        android:id="@+id/permissionTypeSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:prompt="@string/seleccionar_categoria" />
+        android:entries="@array/permission_types"
+        android:prompt="@string/seleccionar_tipo_permiso" />
 
-    <EditText
-        android:id="@+id/permissionAuthorityEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Autoridad"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/permissionNameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nombre del Solicitante"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/permissionDateEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Fecha del Permiso"
-        android:inputType="date" />
-
+    <!-- EditText para el motivo y detalles del permiso -->
     <EditText
         android:id="@+id/permissionReasonEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Motivo del Permiso"
-        android:inputType="text" />
+        android:hint="Fecha deseada, motivo y duración en días"
+        android:inputType="textMultiLine"
+        android:minLines="3" />
 
+    <!-- Botón para solicitar el permiso -->
     <Button
         android:id="@+id/requestPermissionButton"
         android:layout_width="wrap_content"
@@ -54,5 +38,4 @@
         android:text="Solicitar Permiso"
         android:layout_marginTop="16dp"
         android:layout_gravity="center" />
-
 </LinearLayout>

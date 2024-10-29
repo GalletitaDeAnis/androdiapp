@@ -2,44 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-    <TextView
+    <ListView
+        android:id="@+id/permissionsListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Retiros y Ausencias"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:padding="8dp" />
-
-    <EditText
-        android:id="@+id/retreatDateEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Fecha de Retiro"
-        android:inputType="date" />
-
-    <EditText
-        android:id="@+id/retreatReasonEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Motivo del Retiro"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/retreatDurationEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Duración (minutos)"
-        android:inputType="number" />
-
-    <Button
-        android:id="@+id/confirmRetreatButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirmar Retiro"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="center" />
-
+        android:layout_height="match_parent"/>
 </LinearLayout>

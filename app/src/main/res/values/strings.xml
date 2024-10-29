@@ -6,5 +6,13 @@
     <string name="fecha_del_permiso">Fecha del permiso</string>
     <string name="motivo">Motivo</string>
     <string name="solicitar_permiso">Solicitar permiso</string>
+
+    <string name="seleccionar_tipo_permiso">Selecciona el tipo de permiso</string>
+    <string-array name="permission_types">
+        <item>Permiso por enfermedad</item>
+        <item>Permiso personal</item>
+        <item>Comisión</item>
+    </string-array>
+
     <!-- Añade más cadenas según sea necesario -->
 </resources>
