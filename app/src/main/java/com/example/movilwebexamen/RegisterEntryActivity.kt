@@ -155,7 +155,8 @@ class RegisterEntryActivity : AppCompatActivity(), OnMapReadyCallback {
 
     // Esta función está fuera de onCreate para mejorar la estructura del código
     private fun enviarRegistroEntrada(userId: String, fecha: String, hora: String, latitud: String, longitud: String) {
-        val url = URL("http://192.168.100.102:9191/movilconexion/register_entry.php")
+        val url = URL("http://10.0.2.2:9191/movilconexion/register_entry.php")
+        //val url = URL("http://192.168.100.102:9191/movilconexion/register_entry.php")
         val postData = "user_id=$userId&fecha=$fecha&hora=$hora&latitud=$latitud&longitud=$longitud"
 
         CoroutineScope(Dispatchers.IO).launch {

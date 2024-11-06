@@ -123,7 +123,9 @@ class RegisterExitActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun enviarRegistroEntrada(userId: String, fecha: String, hora: String, latitud: String, longitud: String) {
-        val url = URL("http://192.168.100.102:9191/movilconexion/register_exit.php")
+
+        val url = URL("http://10.0.2.2:9191/movilconexion/register_exit.php")
+        //val url = URL("http://192.168.100.102:9191/movilconexion/register_exit.php")
         val postData = "user_id=$userId&fecha=$fecha&hora=$hora&latitud=$latitud&longitud=$longitud"
 
         CoroutineScope(Dispatchers.IO).launch {
